@@ -1,5 +1,9 @@
  let exp = require("express")
  let myexp = exp();
+ let path = require("path")
+
+ myexp.use("/css",exp.static(path.join(__dirname,"node_modules","bootstrap","dist","css")))
+ myexp.use("/js",exp.static(path.join(__dirname,"node_modules","bootstrap","dist","js")))
 
  myexp.set("view engine" , "ejs")
  myexp.get("/" , function(a,b){
@@ -15,5 +19,13 @@
         ]
         b.render("about" ,{p : planet})
  })
+ myexp.get("/c" , function(a,b){
+  
+   b.render("Criminal")
+})
+myexp.get("/d" , function(a,b){
+  
+   b.render("Domestic")
+})
 
  myexp.listen(2001)
